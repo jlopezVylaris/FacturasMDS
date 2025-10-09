@@ -6,7 +6,7 @@
     <header>
       <h1>Gestión de Facturas MDS</h1>
       <nav>
-        <router-link to="/">Inicio</router-link> |
+        <router-link to="/home">Inicio</router-link> |
         <router-link to="/about">Acerca</router-link>
       </nav>
     </header>

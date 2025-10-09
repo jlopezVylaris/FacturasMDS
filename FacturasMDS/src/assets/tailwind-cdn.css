@@ -1,0 +1,6 @@
+/* CDN-based Tailwind (play CDN) - fallback temporal para desarrollo
+   No recomendado para producción. Reemplaza esto cuando tailwindcss esté instalado localmente.
+*/
+@import url('https://cdn.tailwindcss.com');
+
+html, body, #app { height: 100%; }

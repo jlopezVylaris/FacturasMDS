@@ -21,18 +21,31 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
-```sh
+```powershell
 npm install
 ```
 
 ### Compile and Hot-Reload for Development
 
-```sh
+```powershell
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Tailwind CSS
 
-```sh
-npm run build
+Se añadió soporte para Tailwind. Si no está instalado, ejecuta:
+
+```powershell
+npm install -D tailwindcss postcss autoprefixer
+npm install
 ```
+
+Archivos añadidos/importantes:
+
+- `tailwind.config.js` - configuración de Tailwind (incluye colores `primary` y `darkMode: 'class'`).
+- `postcss.config.js` - configuración PostCSS con Tailwind y Autoprefixer.
+- `src/assets/tailwind.css` - entrada CSS de Tailwind (importada en `src/main.js`).
+- `src/views/LoginView.vue` - vista de login con el HTML suministrado.
+- `src/views/RegisterView.vue` - vista de registro.
+- `src/router/index.js` - actualizado con rutas `/login` y `/register`.
+
