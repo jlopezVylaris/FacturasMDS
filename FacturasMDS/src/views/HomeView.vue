@@ -1,7 +1,7 @@
 <template>
   <div>
     <HelloWorld title="Inicio" />
-    <p>Lista de facturas (vacia por defecto)</p>
+    <p>Lista de facturas (prueba)</p>
   </div>
 </template>
 
