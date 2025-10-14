@@ -16,7 +16,7 @@
       </div>
       
       <!-- Label -->
-      <span :style="labelStyle">{{ label }}</span>
+      <span :style="labelStyle" class="whitespace-nowrap">{{ label }}</span>
     </div>
 
     <!-- Badge -->
