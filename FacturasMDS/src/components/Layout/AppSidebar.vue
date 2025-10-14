@@ -95,10 +95,11 @@
             label="Registrar Pago"
           />
           <SidebarItem 
-            href="#"
+            :to="{ name: 'PendingPayments' }"
             icon="pending"
             label="Pagos Pendientes"
             :badge="pendingPaymentsCount"
+            :is-active="$route.name === 'PendingPayments'"
           />
         </div>
       </div>

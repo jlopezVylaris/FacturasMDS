@@ -16,6 +16,16 @@ const routes = [
     path: '/payment-history', 
     name: 'PaymentHistory',
     component: () => import('../views/PaymentHistoryView.vue')
+  },
+  {
+    path: '/pending-payments',
+    name: 'PendingPayments',
+    component: () => import('../views/PendingPaymentsView.vue')
+  },
+  {
+    path: '/process-payment/:id',
+    name: 'ProcessPayment',
+    component: () => import('../views/ProcessPaymentView.vue')
   }
 ]
 
