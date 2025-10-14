@@ -50,6 +50,19 @@
             Ver Pagos
           </router-link>
           
+          <!-- Portal Cliente button: opens in a new tab -->
+          <a
+            href="/portal-cliente"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm border"
+            style="background-color: rgba(255,255,255,0.06); color: #FFFFFF; border-color: rgba(255,255,255,0.12);"
+            onmouseover="this.style.backgroundColor='rgba(255,255,255,0.12)'"
+            onmouseout="this.style.backgroundColor='rgba(255,255,255,0.06)'"
+          >
+            Portal Cliente
+          </a>
+          
           <button 
             class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm shadow-lg"
             style="background-color: #00A64C; color: #FFFFFF;"

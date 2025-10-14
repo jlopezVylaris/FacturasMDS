@@ -27,6 +27,13 @@ const routes = [
     name: 'ProcessPayment',
     component: () => import('../views/ProcessPaymentView.vue')
   }
+  ,
+  {
+    path: '/portal-cliente',
+    name: 'PortalCliente',
+    component: () => import('../views/PortalClienteView.vue'),
+    meta: { public: true }
+  }
 ]
 
 const router = createRouter({
@@ -36,13 +43,20 @@ const router = createRouter({
 
 // Protect routes: redirect to Auth if not logged in
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Auth' && !isAuthenticated.value) {
-    next({ name: 'Auth' })
-  } else if (to.name === 'Auth' && isAuthenticated.value) {
+  // Allow public routes (like PortalCliente) even if not authenticated
+  const isPublic = to.meta && to.meta.public
+
+  if (to.name === 'Auth' && isAuthenticated.value) {
     next({ name: 'Home' })
-  } else {
-    next()
+    return
   }
+
+  if (!isPublic && to.name !== 'Auth' && !isAuthenticated.value) {
+    next({ name: 'Auth' })
+    return
+  }
+
+  next()
 })
 
 export default router
