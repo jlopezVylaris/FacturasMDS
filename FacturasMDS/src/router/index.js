@@ -12,7 +12,11 @@ const routes = [
   // Protected routes
   { path: '/home', name: 'Home', component: HomeView },
   { path: '/about', name: 'About', component: AboutView },
-  { path: '/payment-history', name: 'PaymentHistory', component: PaymentHistoryView }
+  { 
+    path: '/payment-history', 
+    name: 'PaymentHistory',
+    component: () => import('../views/PaymentHistoryView.vue')
+  }
 ]
 
 const router = createRouter({

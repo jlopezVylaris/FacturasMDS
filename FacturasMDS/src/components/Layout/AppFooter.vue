@@ -51,7 +51,7 @@
               </a>
             </li>
             <li>
-              <router-link to="/payments" class="text-sm transition-colors duration-200" style="color: #B0B9C7;" onmouseover="this.style.color='#00A64C'" onmouseout="this.style.color='#B0B9C7'">
+              <router-link to="/payment-history" class="text-sm transition-colors duration-200" style="color: #B0B9C7;" onmouseover="this.style.color='#00A64C'" onmouseout="this.style.color='#B0B9C7'">
                 Historial de Pagos
               </router-link>
             </li>

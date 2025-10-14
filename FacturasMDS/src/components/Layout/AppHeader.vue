@@ -41,7 +41,7 @@
         <div class="flex items-center space-x-4">
           <!-- Quick Actions -->
           <router-link 
-            to="/payments" 
+            to="/payment-history" 
             class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm border backdrop-blur-sm"
             style="background-color: rgba(255,255,255,0.1); color: #FFFFFF; border-color: rgba(255,255,255,0.2);"
             onmouseover="this.style.backgroundColor='rgba(255,255,255,0.2)'"

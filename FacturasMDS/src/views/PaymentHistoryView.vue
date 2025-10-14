@@ -81,9 +81,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, defineComponent } from 'vue'
 import MainLayout from '../components/Layout/MainLayout.vue'
 import PaymentHistory from '../components/PaymentHistory.vue'
+
+defineComponent({
+  name: 'PaymentHistoryView'
+})
 
 // Sample payment data
 const samplePayments = ref([

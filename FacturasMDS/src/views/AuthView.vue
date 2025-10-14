@@ -1,99 +1,106 @@
 <template>
-  <div class="min-h-screen bg-gray-100 flex">
+  <div class="min-h-screen flex" style="background-color: #022031;">
     <!-- Left Column - Auth Forms -->
     <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24">
       <!-- Logo/Brand -->
-      <div class="mx-auto">
-        <h1 class="text-6xl font-bold text-blue-600">Facturas Tap</h1>
+      <div class="mx-auto flex items-center space-x-3">
+        <div class="w-16 h-16 rounded-xl flex items-center justify-center" style="background-color: #00A64C;">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <h1 class="text-6xl font-bold text-white">FacturasTap</h1>
       </div>
 
       <!-- Card Container -->
-      <div class="mt-8 bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 max-w-md w-full mx-auto">
+      <div class="mt-8 backdrop-blur-sm bg-white/10 py-8 px-4 shadow-lg sm:rounded-xl sm:px-10 max-w-md w-full mx-auto border border-white/20">
         <div class="w-full">
           <!-- Login Form -->
           <Transition name="fade" mode="out-in">
-            <div v-if="!showRegister" class="divide-y divide-gray-200">
-              <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Sign in to your account</h2>
+            <div v-if="!showRegister" class="divide-y divide-white/10">
+              <div class="py-8 text-base leading-6 space-y-4 text-white/80 sm:text-lg sm:leading-7">
+                <h2 class="text-2xl font-bold text-white mb-8">Iniciar Sesión</h2>
                 <form @submit.prevent="handleLogin" class="space-y-4">
                   <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <label for="email" class="block text-sm font-medium text-white/80">Email</label>
                     <input v-model="loginForm.email" type="email" id="email" 
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                           class="mt-1 block w-full rounded-lg bg-white/5 border border-white/10 text-white shadow-sm focus:border-teal-500 focus:ring-teal-500"
                            required>
                   </div>
                   <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <label for="password" class="block text-sm font-medium text-white/80">Contraseña</label>
                     <input v-model="loginForm.password" type="password" id="password" 
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                           class="mt-1 block w-full rounded-lg bg-white/5 border border-white/10 text-white shadow-sm focus:border-teal-500 focus:ring-teal-500"
                            required>
                   </div>
                   <div class="flex items-center justify-between">
                     <div class="flex items-center">
                       <input type="checkbox" id="remember-me" 
-                             class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                      <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                             class="h-4 w-4 rounded border-white/10 bg-white/5 text-teal-600 focus:ring-teal-500">
+                      <label for="remember-me" class="ml-2 block text-sm text-white/80">Recordarme</label>
                     </div>
-                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">Forgot password?</a>
+                    <a href="#" class="text-sm font-medium text-teal-400 hover:text-teal-300">¿Olvidaste tu contraseña?</a>
                   </div>
                   <div>
                     <button type="submit" 
-                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                      Sign in
+                            style="background-color: #00A64C;"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200">
+                      Ingresar
                     </button>
                   </div>
                 </form>
-                <p class="mt-4 text-center text-sm text-gray-600">
-                  Not registered? 
+                <p class="mt-4 text-center text-sm text-white/60">
+                  ¿No tienes una cuenta? 
                   <a @click.prevent="showRegister = true" href="#" 
-                     class="font-medium text-blue-600 hover:text-blue-500 cursor-pointer">
-                    Create an account
+                     class="font-medium text-teal-400 hover:text-teal-300 cursor-pointer">
+                    Crear cuenta
                   </a>
                 </p>
               </div>
             </div>
 
             <!-- Register Form -->
-            <div v-else class="divide-y divide-gray-200">
-              <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Create an account</h2>
+            <div v-else class="divide-y divide-white/10">
+              <div class="py-8 text-base leading-6 space-y-4 text-white/80 sm:text-lg sm:leading-7">
+                <h2 class="text-2xl font-bold text-white mb-8">Crear cuenta</h2>
                 <form @submit.prevent="handleRegister" class="space-y-4">
                   <div>
-                    <label for="fullname" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <label for="fullname" class="block text-sm font-medium text-white/80">Nombre Completo</label>
                     <input v-model="registerForm.fullName" type="text" id="fullname" 
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                           class="mt-1 block w-full rounded-lg bg-white/5 border border-white/10 text-white shadow-sm focus:border-teal-500 focus:ring-teal-500"
                            required>
                   </div>
                   <div>
-                    <label for="register-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <label for="register-email" class="block text-sm font-medium text-white/80">Email</label>
                     <input v-model="registerForm.email" type="email" id="register-email" 
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                           class="mt-1 block w-full rounded-lg bg-white/5 border border-white/10 text-white shadow-sm focus:border-teal-500 focus:ring-teal-500"
                            required>
                   </div>
                   <div>
-                    <label for="register-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <label for="register-password" class="block text-sm font-medium text-white/80">Contraseña</label>
                     <input v-model="registerForm.password" type="password" id="register-password" 
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                           class="mt-1 block w-full rounded-lg bg-white/5 border border-white/10 text-white shadow-sm focus:border-teal-500 focus:ring-teal-500"
                            required>
                   </div>
                   <div>
-                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <label for="confirm-password" class="block text-sm font-medium text-white/80">Confirmar Contraseña</label>
                     <input v-model="registerForm.confirmPassword" type="password" id="confirm-password" 
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                           class="mt-1 block w-full rounded-lg bg-white/5 border border-white/10 text-white shadow-sm focus:border-teal-500 focus:ring-teal-500"
                            required>
                   </div>
                   <div>
                     <button type="submit" 
-                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                      Create Account
+                            style="background-color: #00A64C;"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200">
+                      Crear Cuenta
                     </button>
                   </div>
                 </form>
-                <p class="mt-4 text-center text-sm text-gray-600">
-                  Already have an account? 
+                <p class="mt-4 text-center text-sm text-white/60">
+                  ¿Ya tienes una cuenta? 
                   <a @click.prevent="showRegister = false" href="#" 
-                     class="font-medium text-blue-600 hover:text-blue-500 cursor-pointer">
-                    Sign in
+                     class="font-medium text-teal-400 hover:text-teal-300 cursor-pointer">
+                    Iniciar Sesión
                   </a>
                 </p>
               </div>
