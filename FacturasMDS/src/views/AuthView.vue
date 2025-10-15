@@ -129,11 +129,11 @@ import { setAuth } from '../store/auth'
 const router = useRouter()
 const showRegister = ref(false)
 
-// Usuario hardcodeado para pruebas
-const validUser = {
-  email: "admin@admin",
-  password: "Test123."
-}
+// Usuarios hardcodeados para pruebas
+const users = [
+  { email: 'admin@admin', password: 'Admin123.', role: 'admin', name: 'Administrador' },
+  { email: 'user@user', password: 'User123.', role: 'user', name: 'Usuario Normal' }
+]
 
 // Estado de los formularios
 const loginForm = reactive({
@@ -150,13 +150,14 @@ const registerForm = reactive({
 
 // Manejadores de formularios
 const handleLogin = () => {
-  if (loginForm.email === validUser.email && loginForm.password === validUser.password) {
-    // Login exitoso
-  setAuth(true)
-  router.push({ name: 'Home' })
-  } else {
-    alert('Invalid credentials')
+  const found = users.find(u => u.email === loginForm.email && u.password === loginForm.password)
+  if (found) {
+    // Login exitoso: set auth with user info
+    setAuth({ email: found.email, role: found.role, name: found.name })
+    router.push({ name: 'Home' })
+    return
   }
+  alert('Credenciales inválidas')
 }
 
 const handleRegister = () => {
