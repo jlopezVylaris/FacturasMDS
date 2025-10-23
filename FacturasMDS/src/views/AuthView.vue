@@ -49,6 +49,21 @@
                     </button>
                   </div>
                 </form>
+                
+                <!-- Credenciales de prueba -->
+                <div class="mt-6 p-3 rounded-lg border border-white/20 bg-white/5">
+                  <h3 class="text-sm font-semibold text-white mb-2">Credenciales de Prueba:</h3>
+                  <div class="text-xs space-y-1">
+                    <div class="flex justify-between">
+                      <span class="text-white/70">Admin:</span>
+                      <span class="text-teal-300 font-mono">admin@admin / Admin123.</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-white/70">Usuario:</span>
+                      <span class="text-teal-300 font-mono">user@user / User123.</span>
+                    </div>
+                  </div>
+                </div>
                 <p class="mt-4 text-center text-sm text-white/60">
                   ¿No tienes una cuenta? 
                   <a @click.prevent="showRegister = true" href="#" 

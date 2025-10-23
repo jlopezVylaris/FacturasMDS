@@ -3,14 +3,19 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import AuthView from '../views/AuthView.vue'
 import PaymentHistoryView from '../views/PaymentHistoryView.vue'
-import { isAuthenticated } from '../store/auth'
+import { isAuthenticated, currentUser } from '../store/auth'
 
 const routes = [
   // Landing page: Auth view
   { path: '/', name: 'Auth', component: AuthView },
 
   // Protected routes
-  { path: '/home', name: 'Home', component: HomeView },
+  { 
+    path: '/home', 
+    name: 'Home', 
+    component: HomeView,
+    meta: { requiresRole: 'admin' } // Solo admin puede ver facturas
+  },
   { path: '/about', name: 'About', component: AboutView },
   { 
     path: '/payment-history', 
@@ -31,8 +36,14 @@ const routes = [
   {
     path: '/portal-cliente',
     name: 'PortalCliente',
-    component: () => import('../views/PortalClienteView.vue'),
-    meta: { public: true }
+    component: () => import('../views/PortalClienteView.vue')
+  },
+  // Rutas de Clientes - Solo para admin
+  {
+    path: '/clients-list',
+    name: 'ClientsList',
+    component: () => import('../views/ClientsListView.vue'),
+    meta: { requiresRole: 'admin' }
   }
 ]
 
@@ -47,13 +58,31 @@ router.beforeEach((to, from, next) => {
   const isPublic = to.meta && to.meta.public
 
   if (to.name === 'Auth' && isAuthenticated.value) {
-    next({ name: 'Home' })
+    // Si el usuario está autenticado y trata de ir a Auth, 
+    // redirigir según su rol
+    if (currentUser.value && currentUser.value.role === 'admin') {
+      next({ name: 'Home' })
+    } else {
+      next({ name: 'PaymentHistory' }) // Usuarios van al historial de pagos
+    }
     return
   }
 
   if (!isPublic && to.name !== 'Auth' && !isAuthenticated.value) {
     next({ name: 'Auth' })
     return
+  }
+
+  // Control de roles: verificar si el usuario tiene permiso para acceder
+  if (to.meta && to.meta.requiresRole && isAuthenticated.value) {
+    const userRole = currentUser.value && currentUser.value.role
+    const requiredRole = to.meta.requiresRole
+    
+    if (userRole !== requiredRole) {
+      // Si el usuario no tiene el rol requerido, redirigir a PaymentHistory
+      next({ name: 'PaymentHistory' })
+      return
+    }
   }
 
   next()

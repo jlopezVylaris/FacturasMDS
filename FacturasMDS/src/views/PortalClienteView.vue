@@ -2,7 +2,7 @@
   <MainLayout>
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-900">Portal Cliente</h1>
+        <h1 class="text-2xl font-bold text-gray-900">Pagos</h1>
         <p class="mt-1 text-sm text-gray-600">Ingrese su código de referencia para ver el estado de su deuda y opciones de pago.</p>
       </div>
 

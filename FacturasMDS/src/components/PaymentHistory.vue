@@ -426,4 +426,8 @@ const nextPage = () => {
 .bg-teal-25 {
   background-color: rgba(20, 184, 166, 0.05);
 }
+
+button {
+  cursor: pointer;
+}
 </style>
