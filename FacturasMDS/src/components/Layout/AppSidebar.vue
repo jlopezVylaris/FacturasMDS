@@ -33,24 +33,8 @@
           :is-active="$route.name === 'Home'"
         />
       </div> -->
-
-      <!-- Facturación Section - Solo visible para admin -->
-      <div v-if="canViewInvoices" class="mt-8">
-        <h3 class="px-3 text-xs font-semibold uppercase tracking-wider whitespace-nowrap" style="color: #7A7A7A;">
-          Facturación
-        </h3>
-        <div class="mt-2 space-y-1">
-          <SidebarItem 
-            :to="{ name: 'Home' }"
-            icon="invoice"
-            label="Mis Facturas"
-            :is-active="$route.name === 'Home'"
-          />
-        </div>
-      </div>
-
-      <!-- Pagos Section -->
-      <div class="mt-8">
+      <!-- Pagos Section - Solo visible para usuario -->
+      <div v-if="canViewPayments" class="mt-8">
         <h3 class="px-3 text-xs font-semibold uppercase tracking-wider whitespace-nowrap" style="color: #7A7A7A;">
            Gestion de pagos
         </h3>
@@ -58,7 +42,7 @@
           <SidebarItem 
             :to="{ name: 'PortalCliente' }"
             icon="plus-payment"
-            label="Pagos"
+            label="Pagar"
             :is-active="$route.name === 'PortalCliente'"
           />
           <SidebarItem 
@@ -82,6 +66,14 @@
         <h3 class="px-3 text-xs font-semibold uppercase tracking-wider whitespace-nowrap" style="color: #7A7A7A;">
           Ventas
         </h3>
+        <div class="mt-2 space-y-1">
+          <SidebarItem 
+            :to="{ name: 'Home' }"
+            icon="invoice"
+            label="Mis Facturas"
+            :is-active="$route.name === 'Home'"
+          />
+        </div>
         <div class="mt-2 space-y-1">
           <SidebarItem 
             :to="{ name: 'ClientsList' }"
@@ -171,6 +163,14 @@ const canViewInvoices = computed(() => {
     return false // Si no hay usuario o rol, no mostrar
   }
   return currentUser.value.role === 'admin'
+})
+
+// Control de roles - Solo usuario puede ver pagos
+const canViewPayments = computed(() => {
+  if (!currentUser.value || !currentUser.value.role) {
+    return false // Si no hay usuario o rol, no mostrar
+  }
+  return currentUser.value.role === 'user'
 })
 </script>
 
