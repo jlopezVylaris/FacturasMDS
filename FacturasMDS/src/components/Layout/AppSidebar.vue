@@ -13,23 +13,14 @@
     style="background-color: #022031; border-right-color: #003049;"
   >
     <!-- Sidebar Header -->
-    <div class="flex items-center justify-between h-16 px-6 border-b" style="border-bottom-color: #003049;">
-      <div class="flex items-center space-x-3">
-  <img src="/src/assets/logo.svg" alt="Logo" class="w-8 h-8 flex-shrink-0" />
-        <span class="text-lg font-bold whitespace-nowrap" style="color: #FFFFFF;">FacturasTap</span>
-      </div>
-      <button 
-        @click="$emit('close')"
-        class="lg:hidden p-1 rounded-md transition-colors duration-200"
-        style="color: #FFFFFF;"
-        onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'"
-        onmouseout="this.style.backgroundColor='transparent'"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
+    <!-- Logo -->
+          <div class="flex items-center space-x-3 mt-4 px-4">
+            <img src="/src/assets/logo.svg" alt="Logo" class="w-10 h-10" />
+            <div>
+              <h1 class="text-xl font-bold" style="color: #FFFFFF;">FacturasTap</h1>
+              <p class="text-xs" style="color: #B0B9C7;">Sistema de Facturación Médica</p>
+            </div>
+          </div>
 
     <!-- Navigation Menu -->
     <nav class="mt-6 px-3">
@@ -43,8 +34,8 @@
         />
       </div> -->
 
-      <!-- Facturación Section -->
-      <div class="mt-8">
+      <!-- Facturación Section - Solo visible para admin -->
+      <div v-if="canViewInvoices" class="mt-8">
         <h3 class="px-3 text-xs font-semibold uppercase tracking-wider whitespace-nowrap" style="color: #7A7A7A;">
           Facturación
         </h3>
@@ -61,9 +52,15 @@
       <!-- Pagos Section -->
       <div class="mt-8">
         <h3 class="px-3 text-xs font-semibold uppercase tracking-wider whitespace-nowrap" style="color: #7A7A7A;">
-          Pagos
+           Gestion de pagos
         </h3>
         <div class="mt-2 space-y-1">
+          <SidebarItem 
+            :to="{ name: 'PortalCliente' }"
+            icon="plus-payment"
+            label="Pagos"
+            :is-active="$route.name === 'PortalCliente'"
+          />
           <SidebarItem 
             :to="{ name: 'PaymentHistory' }"
             icon="payment"
@@ -76,6 +73,21 @@
             label="Pagos Pendientes"
             :badge="pendingPaymentsCount"
             :is-active="$route.name === 'PendingPayments'"
+          />
+        </div>
+      </div>
+
+      <!-- Clientes Section - Solo visible para admin -->
+      <div v-if="canViewInvoices" class="mt-8">
+        <h3 class="px-3 text-xs font-semibold uppercase tracking-wider whitespace-nowrap" style="color: #7A7A7A;">
+          Ventas
+        </h3>
+        <div class="mt-2 space-y-1">
+          <SidebarItem 
+            :to="{ name: 'ClientsList' }"
+            icon="client"
+            label="Clientes"
+            :is-active="$route.name === 'ClientsList'"
           />
         </div>
       </div>
@@ -117,7 +129,7 @@
           </div>
         </div>
         <button 
-          class="mt-3 w-full text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-lg"
+          class="mt-3 w-full text-sm font-medium py-2 px-4 rounded-lg transition-all duration-200 shadow-lg cursor-pointer"
           style="background-color: #00A64C; color: #FFFFFF;"
           onmouseover="this.style.backgroundColor='#008A40'"
           onmouseout="this.style.backgroundColor='#00A64C'"
@@ -132,6 +144,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import SidebarItem from './SidebarItem.vue'
+import { currentUser } from '../../store/auth'
 
 // Props
 const props = defineProps({
@@ -150,6 +163,14 @@ const pendingPaymentsCount = ref(5)
 // Computed
 const sidebarClasses = computed(() => {
   return props.isOpen ? 'translate-x-0' : '-translate-x-full'
+})
+
+// Control de roles - Solo admin puede ver facturas
+const canViewInvoices = computed(() => {
+  if (!currentUser.value || !currentUser.value.role) {
+    return false // Si no hay usuario o rol, no mostrar
+  }
+  return currentUser.value.role === 'admin'
 })
 </script>
 

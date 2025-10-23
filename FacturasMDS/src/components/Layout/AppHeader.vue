@@ -7,7 +7,7 @@
           <!-- Mobile menu button -->
           <button
             @click="$emit('toggle-sidebar')"
-            class="lg:hidden p-2 rounded-lg transition-colors duration-200"
+            class="lg:hidden p-2 rounded-lg transition-colors duration-200 cursor-pointer"
             style="color: #FFFFFF;"
             onmouseover="this.style.backgroundColor='rgba(0,166,76,0.2)'"
             onmouseout="this.style.backgroundColor='transparent'"
@@ -16,20 +16,10 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
-
-          <!-- Logo -->
-          <div class="flex items-center space-x-3">
-            <img src="/src/assets/logo.svg" alt="Logo" class="w-10 h-10" />
-            <div>
-              <h1 class="text-xl font-bold" style="color: #FFFFFF;">FacturasTap</h1>
-              <p class="text-xs" style="color: #B0B9C7;">Sistema de Facturación Médica</p>
-            </div>
-          </div>
-
           <!-- Page Title -->
-          <div class="hidden md:block border-l pl-4 ml-4" style="border-left-color: rgba(255,255,255,0.2);">
-            <h2 class="text-lg font-semibold" style="color: #FFFFFF;">Mis Facturas</h2>
-            <p class="text-xs" style="color: #B0B9C7;">Gestiona tus facturas médicas</p>
+          <div class="hidden md:block " style="border-left-color: rgba(255,255,255,0.2);">
+            <h2 class="text-lg font-semibold" style="color: #FFFFFF;">{{ pageTitle }}</h2>
+            <p class="text-xs" style="color: #B0B9C7;">{{ pageDescription }}</p>
           </div>
         </div>
 
@@ -38,7 +28,7 @@
           <!-- Quick Actions -->
           <router-link 
             to="/payment-history" 
-            class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm border backdrop-blur-sm"
+            class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm border backdrop-blur-sm cursor-pointer"
             style="background-color: rgba(255,255,255,0.1); color: #FFFFFF; border-color: rgba(255,255,255,0.2);"
             onmouseover="this.style.backgroundColor='rgba(255,255,255,0.2)'"
             onmouseout="this.style.backgroundColor='rgba(255,255,255,0.1)'"
@@ -46,21 +36,9 @@
             Ver Pagos
           </router-link>
           
-          <!-- Portal Cliente button: opens in a new tab -->
-          <a
-            href="/portal-cliente"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm border"
-            style="background-color: rgba(255,255,255,0.06); color: #FFFFFF; border-color: rgba(255,255,255,0.12);"
-            onmouseover="this.style.backgroundColor='rgba(255,255,255,0.12)'"
-            onmouseout="this.style.backgroundColor='rgba(255,255,255,0.06)'"
-          >
-            Portal Cliente
-          </a>
-          
           <button 
-            class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm shadow-lg"
+            v-if="canManageInvoices"
+            class="hidden sm:block px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm shadow-lg cursor-pointer"
             style="background-color: #00A64C; color: #FFFFFF;"
             onmouseover="this.style.backgroundColor='#008A40'"
             onmouseout="this.style.backgroundColor='#00A64C'"
@@ -71,7 +49,7 @@
           <div class="relative">
             <button 
               @click="toggleUserMenu"
-              class="flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200"
+              class="flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 cursor-pointer"
               onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'"
               onmouseout="this.style.backgroundColor='transparent'"
             >
@@ -90,13 +68,13 @@
               class="absolute right-0 mt-2 w-48 rounded-xl shadow-lg border py-2 z-50"
               style="background-color: #FFFFFF; border-color: #E5E7EB;"
             >
-                <a href="#" class="flex items-center px-4 py-2 text-sm transition-colors duration-200" style="color: #022031;" onmouseover="this.style.backgroundColor='#F0F9F5'" onmouseout="this.style.backgroundColor='transparent'">
+                <a href="#" class="flex items-center px-4 py-2 text-sm transition-colors duration-200 cursor-pointer" style="color: #022031;" onmouseover="this.style.backgroundColor='#F0F9F5'" onmouseout="this.style.backgroundColor='transparent'">
                 <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #00A64C;">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
                 Mi Perfil
               </a>
-              <a href="#" class="flex items-center px-4 py-2 text-sm transition-colors duration-200" style="color: #022031;" onmouseover="this.style.backgroundColor='#F0F9F5'" onmouseout="this.style.backgroundColor='transparent'">
+              <a href="#" class="flex items-center px-4 py-2 text-sm transition-colors duration-200 cursor-pointer" style="color: #022031;" onmouseover="this.style.backgroundColor='#F0F9F5'" onmouseout="this.style.backgroundColor='transparent'">
                 <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #00A64C;">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -104,7 +82,7 @@
                 Configuración
               </a>
               <div class="border-t mt-2 pt-2" style="border-top-color: #E5E7EB;">
-                <button @click.prevent="handleLogout" class="w-full text-left flex items-center px-4 py-2 text-sm transition-colors duration-200" style="color: #DC2626;" onmouseover="this.style.backgroundColor='#FEF2F2'" onmouseout="this.style.backgroundColor='transparent'">
+                <button @click.prevent="handleLogout" class="w-full text-left flex items-center px-4 py-2 text-sm transition-colors duration-200 cursor-pointer" style="color: #DC2626;" onmouseover="this.style.backgroundColor='#FEF2F2'" onmouseout="this.style.backgroundColor='transparent'">
                   <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #DC2626;">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                   </svg>
@@ -165,6 +143,14 @@ const displayRole = computed(() => {
   return role
 })
 
+// Control de roles - Solo admin puede ver/crear facturas
+const canManageInvoices = computed(() => {
+  if (!currentUser.value || !currentUser.value.role) {
+    return false // Si no hay usuario o rol, no mostrar
+  }
+  return currentUser.value.role === 'admin'
+})
+
 const router = useRouter()
 
 const handleLogout = () => {
@@ -176,8 +162,11 @@ const handleLogout = () => {
 
 const pageTitle = computed(() => {
   const routeMap = {
-    'Home': 'Mis Facturas',
+    'Home': canManageInvoices.value ? 'Mis Facturas' : 'Panel de Usuario',
     'PaymentHistory': 'Historial de Pagos',
+    'PendingPayments': 'Pagos Pendientes',
+    'PortalCliente': 'Pagos',
+    'ClientsList': 'Clientes',
     'About': 'Ayuda y Soporte',
     'Login': 'Iniciar Sesión',
     'Register': 'Registro'
@@ -187,8 +176,11 @@ const pageTitle = computed(() => {
 
 const pageDescription = computed(() => {
   const descriptionMap = {
-    'Home': 'Gestiona y controla todas tus facturas médicas',
+    'Home': canManageInvoices.value ? 'Gestiona y controla todas tus facturas médicas' : 'Accede a tu información y pagos médicos',
     'PaymentHistory': 'Revisa todos tus pagos y transacciones médicas',
+    'PendingPayments': 'Gestiona los pagos que están pendientes de procesar',
+    'PortalCliente': 'Realiza y gestiona tus pagos médicos',
+    'ClientsList': 'Gestiona tu lista de clientes y sus cuentas por cobrar',
     'About': 'Centro de ayuda y documentación',
     'Login': 'Accede a tu cuenta',
     'Register': 'Crea tu cuenta nueva'

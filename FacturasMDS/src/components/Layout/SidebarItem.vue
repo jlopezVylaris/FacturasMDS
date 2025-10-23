@@ -5,7 +5,7 @@
     :href="href"
     :class="itemClasses"
     :style="itemStyle"
-    class="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 group"
+    class="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 group cursor-pointer"
     @mouseover="handleMouseOver"
     @mouseout="handleMouseOut"
   >

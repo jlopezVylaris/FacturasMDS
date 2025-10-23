@@ -183,4 +183,7 @@ const appVersion = computed(() => '2.1.0')
 
 <style scoped>
 /* Estilos específicos del footer si son necesarios */
+a, router-link {
+  cursor: pointer;
+}
 </style>
