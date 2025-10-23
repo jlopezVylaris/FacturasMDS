@@ -4,3 +4,49 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Redirect SPA routes to index.html
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/home"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/payment-history"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pending-payments"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/process-payment/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/portal-cliente"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/clients-list"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/received-payments"
+  to = "/index.html"
+  status = 200
