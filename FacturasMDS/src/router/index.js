@@ -44,6 +44,13 @@ const routes = [
     name: 'ClientsList',
     component: () => import('../views/ClientsListView.vue'),
     meta: { requiresRole: 'admin' }
+  },
+  // Rutas de Pagos Recibidos - Solo para admin
+  {
+    path: '/received-payments',
+    name: 'ReceivedPayments',
+    component: () => import('../views/ReceivedPaymentsView.vue'),
+    meta: { requiresRole: 'admin' }
   }
 ]
 

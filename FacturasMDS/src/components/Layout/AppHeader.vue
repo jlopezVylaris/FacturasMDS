@@ -162,12 +162,13 @@ const handleLogout = () => {
 
 const pageTitle = computed(() => {
   const routeMap = {
-    'Home': canManageInvoices.value ? 'Mis Facturas' : 'Panel de Usuario',
+    'Home': canManageInvoices.value ? 'Facturas' : 'Panel de Usuario',
     'PaymentHistory': 'Historial de Pagos',
     'PendingPayments': 'Pagos Pendientes',
     'ProcessPayment': 'Procesar Pago',
     'PortalCliente': 'Pagos',
     'ClientsList': 'Clientes',
+    'ReceivedPayments': 'Pagos Recibidos',
     'About': 'Ayuda y Soporte',
     'Login': 'Iniciar Sesión',
     'Register': 'Registro'
@@ -183,6 +184,7 @@ const pageDescription = computed(() => {
     'ProcessPayment': 'Completa el proceso de pago de tu factura médica',
     'PortalCliente': 'Realiza y gestiona tus pagos médicos',
     'ClientsList': 'Gestiona tu lista de clientes y sus cuentas por cobrar',
+    'ReceivedPayments': 'Revisa todos los pagos recibidos de tus clientes',
     'About': 'Centro de ayuda y documentación',
     'Login': 'Accede a tu cuenta',
     'Register': 'Crea tu cuenta nueva'

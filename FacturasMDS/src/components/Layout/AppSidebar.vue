@@ -70,7 +70,7 @@
           <SidebarItem 
             :to="{ name: 'Home' }"
             icon="invoice"
-            label="Mis Facturas"
+            label="Facturas"
             :is-active="$route.name === 'Home'"
           />
         </div>
@@ -80,6 +80,14 @@
             icon="client"
             label="Clientes"
             :is-active="$route.name === 'ClientsList'"
+          />
+        </div>
+        <div class="mt-2 space-y-1">
+          <SidebarItem 
+            :to="{ name: 'ReceivedPayments' }"
+            icon="payment"
+            label="Pagos Recibidos"
+            :is-active="$route.name === 'ReceivedPayments'"
           />
         </div>
       </div>
