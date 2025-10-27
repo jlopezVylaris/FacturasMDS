@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import AuthView from '../views/AuthView.vue'
 import PaymentHistoryView from '../views/PaymentHistoryView.vue'
+import AdminDashboardView from '../views/AdminDashboardView.vue'
 import { isAuthenticated, currentUser } from '../store/auth'
 
 const routes = [
@@ -10,6 +11,12 @@ const routes = [
   { path: '/', name: 'Auth', component: AuthView },
 
   // Protected routes
+  { 
+    path: '/dashboard', 
+    name: 'AdminDashboard', 
+    component: AdminDashboardView,
+    meta: { requiresRole: 'admin' } // Solo admin puede ver el dashboard
+  },
   { 
     path: '/home', 
     name: 'Home', 
@@ -68,7 +75,7 @@ router.beforeEach((to, from, next) => {
     // Si el usuario está autenticado y trata de ir a Auth, 
     // redirigir según su rol
     if (currentUser.value && currentUser.value.role === 'admin') {
-      next({ name: 'Home' })
+      next({ name: 'AdminDashboard' }) // Admin va al dashboard
     } else {
       next({ name: 'PaymentHistory' }) // Usuarios van al historial de pagos
     }

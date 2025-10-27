@@ -54,7 +54,7 @@
           <SidebarItem 
             :to="{ name: 'PendingPayments' }"
             icon="pending"
-            label="Pagos Pendientes"
+            label="Facturas Pendientes"
             :badge="pendingPaymentsCount"
             :is-active="$route.name === 'PendingPayments'"
           />
@@ -67,6 +67,12 @@
           Ventas
         </h3>
         <div class="mt-2 space-y-1">
+          <SidebarItem 
+            :to="{ name: 'AdminDashboard' }"
+            icon="dashboard"
+            label="Dashboard"
+            :is-active="$route.name === 'AdminDashboard'"
+          />
           <SidebarItem 
             :to="{ name: 'Home' }"
             icon="invoice"
