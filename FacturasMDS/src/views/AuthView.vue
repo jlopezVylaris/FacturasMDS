@@ -158,7 +158,7 @@ const handleLogin = () => {
     
     // Redirigir según el rol del usuario
     if (found.role === 'admin') {
-      router.push({ name: 'Home' })
+      router.push({ name: 'AdminDashboard' })
     } else {
       router.push({ name: 'PaymentHistory' })
     }
